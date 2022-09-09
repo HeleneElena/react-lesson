@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  gap: 3em;
+}
+
+.title {
+  margin-bottom: 1em;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.btn {
+  background-color: beige;
+  color: brown;
+  padding: 10px 15px;
+  font-size: 20px;
+  border: 0;
+  margin: 20px auto;
+  display: block;
+  transition-property: color, background-color, transform;
+  transition-duration: 0.36s, 0.36s, 0.05s;
+  transition-timing-function: ease-in-out;
+}
+
+.btn:hover {
+  background-color: brown;
+  color: beige;
+}
+
+.btn:active {
+  transform: translate(3px, 3px);
+}
