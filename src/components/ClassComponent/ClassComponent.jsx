@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {min, max} from '../../data';
 import style from './ClassComponent.module.css';
 
 export class ClassComponent extends React.Component {
@@ -8,29 +9,27 @@ export class ClassComponent extends React.Component {
     this.state = {
       userNumber: '',
       randomNumber:
-         Math.floor(Math.random() * this.props.max - this.props.min) +
-         this.props.min,
-      result: 'Результат',
+        Math.floor(Math.random() * max - min) + min,
+      result: `Загадано число от ${min} до ${max}. У вас 5 попыток!`,
       count: 0,
+      textBtn: 'Угадать',
     };
   }
 
   handleChange = e => {
-    this.setState({
+    this.setState(state => ({
       userNumber: e.target.value,
-    });
+      count: state.count + 1,
+    }));
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setState(state => ({
-      count: state.count + 1,
-    }));
-
+  
     this.setState(state => {
-      if (!state.userNumber) {
+      if (state.userNumber === '' || (min > state.userNumber > max || state.userNumber === ' ')) {
         return {
-          result: 'Введите число',
+          count: state.count,
         };
       }
 
@@ -49,42 +48,55 @@ export class ClassComponent extends React.Component {
       }
 
       return {
-        result: `Вы угадали, это ${state.userNumber},
+        result: `Поздравляем, вы угадали! Это ${state.userNumber},
                   попыток ${state.count}`,
         userNumber: '',
+        textBtn: 'Сыграть ещё',
       };
     });
+    this.handleSubmit();
   };
 
   handleNewGame = () => {
-    this.setState((state, props) => ({
+    this.setState({
+      userNumber: '',
       randomNumber:
-        Math.floor(Math.random() * props.max - props.min) + props.min,
+        Math.floor(Math.random() * max - min) + min,
+      result: 'Загадано число от 1 до 10. У вас 5 попыток!',
       count: 0,
-    }));
+    });
+    this.handleSubmit();
   };
-
 
   render() {
     return (
       <div className={style.game}>
         <p className={style.result}>{this.state.result} </p>
+        { 
+          this.state.count < 5 &&
+            <form className={style.form} onSubmit={this.handleSubmit} >
+              <label className={style.label} htmlFor='user_number'>
+                Введите число
+              </label>
 
-        <form className={style.form} onSubmit={this.handleSubmit} >
+              <input onChange={this.handleChange} value={this.state.userNumber} 
+                className={style.input} type='number' id='user_number'>
+              </input>
 
-          <label className={style.label} htmlFor='user_number'>
-            Угадай число
-          </label>
-
-          <input onChange={this.handleChange} value={this.state.userNumber} 
-            className={style.input} type='number' id='user_number'>
-          </input>
-
-          <button className={style.btn}>Угадать</button>
-          <button onClick={this.handleNewGame} className={style.btn}>
-            Сыграть ещё
-          </button>    
-        </form>
+              <button className={style.btn}>
+                {this.state.textBtn}
+              </button>
+            </form>
+        }
+        { 
+          this.state.count === 5 &&
+          <form className={style.form} onSubmit={this.handleSubmit} >
+            <p>Ваши 5 попыток закончились!</p>
+            <button onClick={this.handleNewGame} className={style.btn}>
+              Сыграть ещё
+            </button>   
+          </form>  
+        }
       </div>
     );
   }

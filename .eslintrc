@@ -108,7 +108,6 @@
     "comma-spacing": "error",
     "comma-style": "error",
     "computed-property-spacing": "error",
-    "eol-last": "error",
     "func-call-spacing": "error",
     "indent": [
       "error",
@@ -136,7 +135,7 @@
     "max-len": [
       "error",
       {
-        "code": 80,
+        "code": 100,
         "tabWidth": 2,
         "ignoreUrls": true,
         "ignorePattern": "goog.(module|require)"
