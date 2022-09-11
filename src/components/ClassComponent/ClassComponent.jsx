@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from './ClassComponent.module.css';
+import {Heart} from './../Heart/Heart';
 
 export class ClassComponent extends React.Component {
   constructor(props) {
@@ -82,8 +83,12 @@ export class ClassComponent extends React.Component {
   render() {
     return (
       <div className={style.game}>
-        <p className={style.result}>{this.state.result} </p>
+        <p className={style.result}>{this.state.result}</p>
+
         <form className={style.form} onSubmit={this.handleSubmit} >
+          <div className={style.position}>
+            <Heart />
+          </div>
           <label className={style.label} htmlFor='user_number'>
             Введите число
           </label>

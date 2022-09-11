@@ -1,13 +1,15 @@
 .game {
-    border: 1px solid white;
+    border: 1px solid #F48F00;;
     border-radius: 8px;
-    padding: 20px 30px 40px;
+    padding: 40px;
+    min-width: 700px;
+    min-height: 250px;
 }
 
 .result {
     text-align: center;
     font-size: 24px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .form {
@@ -22,15 +24,21 @@
 }
 
 .input {
-    height: 30px;
-    width: 100px;
+    width: 63px;
+    height: 58px;
+    background: #F3F2F2;
+    width: 73px;
+    height: 67px;
+    background: rgba(247, 247, 247, 0.74);
+    font-size: 1.5rem;
+    text-align: center;
 }
 
 .btn {
     padding: 5px 10px;
-    background-color: transparent;
+    background-color: #F48F00;
     color: white;
-    border: 2px solid white;
+    border: 2px solid #F48F00;
     transition-property: border-color, background-color, color;
     transition-duration: 0.36s;
     transition-timing-function: ease-in-out;
@@ -40,4 +48,11 @@
     background-color: white;
     border-color: white;
     color: black;
+}
+
+.heart {
+    padding: 10%;
+}
+.position {
+    margin-right: 20px;
 }
