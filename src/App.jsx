@@ -5,7 +5,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className='app'>
-        <ComponentClass />
+        <ComponentClass max={10} min={1} />
       </div>
     );
   }
