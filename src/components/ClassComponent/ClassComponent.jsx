@@ -1,18 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import style from './ClassComponent.module.css';
-import {Heart} from './../Heart/Heart';
 
 export class ClassComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userNumber: '',
-      randomNumber:
-        Math.floor(Math.random() * (props.max - props.min) + props.min),
-      result: `Загадано число от ${props.min} до ${props.max}. У вас 6 попыток!`,
-      count: 0,
-      isStatus: false,
+          userNumber: '',
+          randomNumber:
+            Math.floor(Math.random() * (this.props.max - this.props.min) + this.props.min),
+          result: `Загадано число от ${this.props.min} до ${this.props.max}. У вас 6 попыток!`,
+          count: 0,
+          isStatus: false,
     };
   }
 
@@ -25,13 +24,13 @@ export class ClassComponent extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
 
-    this.setState(((state, props) => {
+    this.setState((state => {
       if (state.isStatus) {
         return {
           userNumber: '',
           randomNumber:
-          Math.floor(Math.random() * (props.max - props.min) + props.min),
-          result: `Загадано число от ${props.min} до ${props.max}. У вас 6 попыток!`,
+            Math.floor(Math.random() * (this.props.max - this.props.min) + this.props.min),
+          result: `Загадано число от ${this.props.min} до ${this.props.max}. У вас 6 попыток!`,
           count: 0,
           isStatus: false,
         };
@@ -86,9 +85,6 @@ export class ClassComponent extends React.Component {
         <p className={style.result}>{this.state.result}</p>
 
         <form className={style.form} onSubmit={this.handleSubmit} >
-          <div className={style.position}>
-            <Heart />
-          </div>
           <label className={style.label} htmlFor='user_number'>
             Введите число
           </label>
